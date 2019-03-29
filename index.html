@@ -11,9 +11,11 @@
     <button type="button" class="btn btn-primary btn-lg" 
     onclick="resetElement(); document.getElementById('appendixTwoOne').style.display = 'block'">Q1</button>
     <button type="button" class="btn btn-secondary btn-lg"
-    onclick="resetElement(); document.getElementById('appendixTwoTwo').style.display = 'block'" >Q2</button>
-    <button type="button" class="btn btn-success btn-lg">Q3</button>
-    <button type="button" class="btn btn-danger btn-lg">Q4</button>
+    onclick="resetElement(); document.getElementById('appendixTwoTwo').style.display = 'block'">Q2</button>
+    <button type="button" class="btn btn-success btn-lg" 
+    onclick="resetElement(); document.getElementById('appendixTwoThree').style.display = 'block'">Q3</button>
+    <button type="button" class="btn btn-danger btn-lg" 
+    onclick="resetElement(); document.getElementById('appendixTwoFour').style.display = 'block'">Q4</button>
     
     
     <!-- VIEW -->
@@ -41,12 +43,18 @@
         <p>{{ count }}</p>
         <p>{{ result }}</p>
     </div>
-    
+
+    <!-- for Q3 -->
+    <div id="appendixTwoThree" style="display: none"></div>
+    <!-- for Q4 -->
+    <div id="appendixTwoFour" style="display: none"></div>
     <script src="main.js"></script>
     <script>
     function resetElement() {
         document.getElementById("appendixTwoOne").style.display = "none";
         document.getElementById("appendixTwoTwo").style.display = "none";
+        document.getElementById("appendixTwoThree").style.display = "none";
+        document.getElementById("appendixTwoFour").style.display = "none";
     }
     </script>
     
