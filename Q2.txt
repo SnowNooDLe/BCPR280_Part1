@@ -1,0 +1,60 @@
+<!-- for Q2 -->
+    <div id="appendixTwoTwo" style="display: none">
+        <p>Number has been generated for Q2 ! Guess the Number !</p>
+        <p style="width: 700px;">
+            RULE: The program shall response with "COLD" if the guess is 
+            more than 40 from the target number, "COOL" if the guess 
+            is within 20-39 of the target number, “WARM” if the guess 
+            is within 10-19 of the target number, “HOT” if the guess 
+            is within 1-9 of the target number or 
+            "You got it in n trials" if the guess is correct</p>
+        <input type="text" id="input" v-model="txtInput"></input>
+        <button v-on:click="compareNumbers">Guess !</button>
+        <p>{{ count }}</p>
+        <p>{{ result }}</p>
+    </div>
+
+
+// method for Q2
+    compareNumbersQ2(userInput, randomNum){
+        let difference = Math.abs(userInput - randomNum)
+        if (userInput > 99 || userInput < 0){
+            return "Number is between 0 and 99"
+        }
+        this.count++
+        if (difference >= 40){
+            return "COLD"
+        } else if (difference >= 20 && difference <= 39){
+            return "COOL"
+        } else if (difference >= 10 && difference <= 19){
+            return "WARM"
+        } else if (difference >= 1 && difference <= 9){
+            return "HOT"
+        } else if (difference == 0){
+            return `You got it in ${this.count} trials!`
+        } 
+        else{
+            return "Something is not right !"
+        }
+    }
+// CONTROLLER
+// working on Q2
+var Q2 = new Vue({
+    el:'#appendixTwoTwo',
+    data: {
+        game: new Game(),
+        randomNum: 0,
+        count: 0,
+        txtInput: '',
+        result: ''
+    },
+    methods: {
+        compareNumbers: function () {
+            this.randomNum = this.game.generateNumberByGame()
+            console.log("User input is " + this.txtInput)
+            console.log("Generated number is " + this.randomNum)
+            this.result = this.game.compareNumbersQ2(this.txtInput, this.randomNum)
+            this.count = this.game.getCountValue()
+        }
+    }
+});
