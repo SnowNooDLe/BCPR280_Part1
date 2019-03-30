@@ -11,6 +11,9 @@ class Game {
     }
     // method for Q1
     compareNumbersQ1(userInput, randomNum){
+        if (userInput.isEmpty()){
+            return "Invalid Try, please put value in"
+        }
         if (userInput > 99 || userInput < 0){
             return "Number is between 0 and 99"
         }
