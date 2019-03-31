@@ -29,7 +29,7 @@ class Game {
             // Added after Test#6 as it was increasing, so decrease to not to count when its
             // not an integer input as its not a right comparison with randomly generated number
             this.count--
-            return "Something is not right !"
+            return "Plz type number to compare !"
         }
     }
 
