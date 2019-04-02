@@ -46,7 +46,6 @@ class Q1 extends Game {
         }
     }
 }
-
 // Controller for Q1
 var question1 = new Vue({
     el:'#appendixTwoOne', 
@@ -60,6 +59,7 @@ var question1 = new Vue({
         disabled: 0
     },
     methods: {
+
         compareNumbers: function () {
             if (this.disabled == 0){
                 this.randomNum = this.game.generateNumberByGame()
@@ -81,10 +81,10 @@ var question1 = new Vue({
             this.disabled = 0
             this.game = new Q1()
             this.randomNum = 0
+            this.count = 0
             this.txtInput = ''
             this.result = ''
             this.intInput = 0
-            this.count = 0
         }
     }
 });
@@ -154,16 +154,11 @@ var question2 = new Vue({
             this.disabled = 0
             this.game = new Q2()
             this.randomNum = 0
+            this.count = 0
             this.txtInput = ''
             this.result = ''
             this.intInput = 0
-            this.count = 0
         }
     }
 });
-
-
-
-
-
 

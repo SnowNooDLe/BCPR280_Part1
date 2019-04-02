@@ -5,8 +5,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="css/stylesheet.css">  
+    
 </head>
 <body>
+    <!-- <div id='global-div'> -->
+
+    
     <h1>Assignment 1, Appendix Two</h1>
     <button type="button" class="btn btn-primary btn-lg" 
     onclick="resetElement(); document.getElementById('appendixTwoOne').style.display = 'block'">Q1</button>
@@ -16,8 +20,8 @@
     onclick="resetElement(); document.getElementById('appendixTwoThree').style.display = 'block'">Q3</button>
     <button type="button" class="btn btn-danger btn-lg" 
     onclick="resetElement(); document.getElementById('appendixTwoFour').style.display = 'block'">Q4</button>
-    <!-- <button class="btn btn-primary btn-lg">Q1</button>
-    <button class="btn btn-secondary btn-lg" v-if="seen">Q2</button>
+    <!-- <button class="btn btn-primary btn-lg" v-on:click="seen = !seen">Q1</button>
+    <button class="btn btn-secondary btn-lg">Q2</button>
     <button class="btn btn-success btn-lg">Q3</button>
     <button class="btn btn-danger btn-lg">Q4</button> -->
     
@@ -28,6 +32,7 @@
     <div id="appendixTwoOne" style="display: none">
         <p>Number has been generated for Q1 ! Guess the Number !</p>
         <input type="text" id="input" v-model="txtInput"/>
+        <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
         <button v-on:click="resetGames">Rest Game</button>
         <p>Trials: {{ count }}</p>
@@ -39,13 +44,15 @@
         <p>Number has been generated for Q2 ! Guess the Number !</p>
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
         <p style="width: 700px;">
-            RULE: The program shall response with "COLD" if the guess is 
+            RULE: <br>
+            The program shall response with "COLD" if the guess is 
             more than 40 from the target number, "COOL" if the guess 
             is within 20-39 of the target number, “WARM” if the guess 
             is within 10-19 of the target number, “HOT” if the guess 
             is within 1-9 of the target number or 
             "You got it in n trials" if the guess is correct</p>
         <input type="text" id="input" v-model="txtInput"></input>
+        <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
         <button v-on:click="resetGames">Rest Game</button>
         <p>Trials: {{ count }}</p>
@@ -70,6 +77,7 @@
         document.getElementById("appendixTwoFour").style.display = "none";
     }
     </script>
+    </div>
     
 </body>
 </html> 
