@@ -10,6 +10,14 @@ class Game {
     generateNumberByGame(){
         return this.generatedNum
     }
+
+    getCountValue(){
+        return this.count
+    }
+
+}
+
+class Q1 extends Game {
     // method for Q1
     compareNumbersQ1(input, randomNum){
         // Added after Test#4, Test#6
@@ -33,19 +41,14 @@ class Game {
             return "Something is not right !"
         }
     }
-
-    getCountValue(){
-        return this.count
-    }
-
 }
 
 
 // Controller
-var Q1 = new Vue({
+var question1 = new Vue({
     el:'#appendixTwoOne', 
     data: {
-        game: new Game(),
+        game: new Q1(),
         randomNum: 0,
         count: 0,
         txtInput: '',
