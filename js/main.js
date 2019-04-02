@@ -14,11 +14,10 @@ class Game {
     getCountValue(){
         return this.count
     }
-
 }
 
+// Class for Q1
 class Q1 extends Game {
-    // method for Q1
     compareNumbersQ1(input, randomNum){
         // Added after Test#4, Test#6
         // checking input is valid integer or not
