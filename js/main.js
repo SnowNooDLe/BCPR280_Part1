@@ -3,6 +3,7 @@ class Game {
     
     count = 0
     generatedNum = Math.floor(Math.random() * 100)
+    userInput = 0
     constructor () {
     }
 
@@ -10,26 +11,26 @@ class Game {
         return this.generatedNum
     }
     // method for Q1
-    compareNumbersQ1(userInput, randomNum){
-        // Added after Test#4, checking empty string for guessing step
-        if (userInput === ''){
-            return "Invalid Try, please put value in"
+    compareNumbersQ1(input, randomNum){
+        // Added after Test#4, Test#6
+        // checking input is valid integer or not
+        this.userInput = parseInt(input)
+        if (!Number.isInteger(this.userInput)){
+            return "Invalid Try, please put integer value in to guess"
         }
-        if (userInput > 99 || userInput < 0){
+        if (this.userInput > 99 || this.userInput < 0){
             return "Randomly generated number is between 0 and 99"
         }
         this.count++
-        if (userInput < randomNum){
+        if (this.userInput < randomNum){
             return "Try Higher"
-        } else if (userInput > randomNum){
+        } else if (this.userInput > randomNum){
             return "Try Lower"
-        } else if (userInput == randomNum){
+        } else if (this.userInput == randomNum){
             return `You got it in ${this.count} trials!`
         }  else{
-            // Added after Test#6 as it was increasing, so decrease to not to count when its
-            // not an integer input as its not a right comparison with randomly generated number
-            this.count--
-            return "Plz type number to compare !"
+            // something gone wrong
+            return "Something is not right !"
         }
     }
 
