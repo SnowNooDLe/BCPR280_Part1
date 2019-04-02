@@ -28,7 +28,8 @@
     <div id="appendixTwoOne" style="display: none">
         <p>Number has been generated for Q1 ! Guess the Number !</p>
         <input type="text" id="input" v-model="txtInput"/>
-        <button v-on:click="compareNumbers">Guess !</button>
+        <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
+        <button v-on:click="resetGames">Rest Game</button>
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
@@ -45,7 +46,8 @@
             is within 1-9 of the target number or 
             "You got it in n trials" if the guess is correct</p>
         <input type="text" id="input" v-model="txtInput"></input>
-        <button v-on:click="compareNumbers">Guess !</button>
+        <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
+        <button v-on:click="resetGames">Rest Game</button>
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>

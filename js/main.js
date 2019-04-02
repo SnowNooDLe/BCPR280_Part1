@@ -47,6 +47,48 @@ class Q1 extends Game {
     }
 }
 
+// Controller for Q1
+var question1 = new Vue({
+    el:'#appendixTwoOne', 
+    data: {
+        game: new Q1(),
+        randomNum: 0,
+        count: 0,
+        txtInput: '',
+        result: '',
+        intInput: 0,
+        disabled: 0
+    },
+    methods: {
+        compareNumbers: function () {
+            if (this.disabled == 0){
+                this.randomNum = this.game.generateNumberByGame()
+                console.log("User input is " + this.txtInput)
+                console.log("Generated number is " + this.randomNum)
+                this.intInput = this.game.convertToInteger(this.txtInput)
+                this.result = this.game.compareNumbersQ1(this.intInput, this.randomNum)
+                this.count = this.game.getCountValue()
+                // When game is finished, Button will be disabled, need to be resetted
+                if (this.result.startsWith("You")){
+                    this.disabled = 1
+                }
+            }
+            
+        },
+        // Starting new game
+        resetGames: function () {
+            console.log("It is pressed So I am resetting")
+            this.disabled = 0
+            this.game = new Q1()
+            this.randomNum = 0
+            this.txtInput = ''
+            this.result = ''
+            this.intInput = 0
+            this.count = 0
+        }
+    }
+});
+
 // Class for Q2
 class Q2 extends Game {
     compareNumbersQ2(input, randomNum){
@@ -78,31 +120,7 @@ class Q2 extends Game {
         }
     }
 }
-
-
-// Controller
-var question1 = new Vue({
-    el:'#appendixTwoOne', 
-    data: {
-        game: new Q1(),
-        randomNum: 0,
-        count: 0,
-        txtInput: '',
-        result: '',
-        intInput: 0
-    },
-    methods: {
-        compareNumbers: function () {
-            this.randomNum = this.game.generateNumberByGame()
-            console.log("User input is " + this.txtInput)
-            console.log("Generated number is " + this.randomNum)
-            this.intInput = this.game.convertToInteger(this.txtInput)
-            this.result = this.game.compareNumbersQ1(this.intInput, this.randomNum)
-            this.count = this.game.getCountValue()
-        }
-    }
-});
-
+// Controller for Q2
 var question2 = new Vue({
     el:'#appendixTwoTwo',
     data: {
@@ -111,16 +129,35 @@ var question2 = new Vue({
         count: 0,
         txtInput: '',
         result: '',
-        intInput: 0
+        intInput: 0,
+        disabled: 0
     },
     methods: {
         compareNumbers: function () {
-            this.randomNum = this.game.generateNumberByGame()
-            console.log("User input is " + this.txtInput)
-            console.log("Generated number is " + this.randomNum)
-            this.intInput = this.game.convertToInteger(this.txtInput)
-            this.result = this.game.compareNumbersQ2(this.intInput, this.randomNum)
-            this.count = this.game.getCountValue()
+            if (this.disabled == 0){
+                this.randomNum = this.game.generateNumberByGame()
+                console.log("User input is " + this.txtInput)
+                console.log("Generated number is " + this.randomNum)
+                this.intInput = this.game.convertToInteger(this.txtInput)
+                this.result = this.game.compareNumbersQ2(this.intInput, this.randomNum)
+                this.count = this.game.getCountValue()
+                // When game is finished, Button will be disabled, need to be resetted
+                if (this.result.startsWith("You")){
+                    this.disabled = 1
+                }
+            }
+            
+        },
+        // Starting new game
+        resetGames: function () {
+            console.log("It is pressed So I am resetting")
+            this.disabled = 0
+            this.game = new Q2()
+            this.randomNum = 0
+            this.txtInput = ''
+            this.result = ''
+            this.intInput = 0
+            this.count = 0
         }
     }
 });
