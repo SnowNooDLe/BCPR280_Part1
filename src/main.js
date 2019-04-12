@@ -105,17 +105,23 @@ class Q3 extends Game {
         if (this.max <= this.min){
             return 'you are lying !!!!! I am so sad'
         }
-        this.count++
-        console.log('Range min is : ' + this.min)
-        console.log('Range max is : ' + this.max)
+        
+        console.log('Range min was : ' + this.min)
+        console.log('Range max was : ' + this.max)
         if (input === 'Try Higher'){
+            this.count++
             this.min = randomNum
             // random number between this.min ~ this.max
             this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+            console.log('Range min is : ' + this.min)
+            console.log('Range max is : ' + this.max)
             return this.generatedNum
         } else if (input === 'Try Lower'){
+            this.count++
             this.max = randomNum
             this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+            console.log('Range min is : ' + this.min)
+            console.log('Range max is : ' + this.max)
             return this.generatedNum
         } else if (input === 'Correct'){
             return `I got it in ${this.count} trials ! WOOHOO !!!`
@@ -172,14 +178,15 @@ viewModel2.data.game = new Q2()
 var question2 = new Vue(viewModel2)
 
 // Controllers for Q3, Q4
+var firstGuess = Math.floor(Math.random() * 100)
 var viewModel3 = {
     el: '#appendixTwoThree',
     data: {
         game: new Q3(),
         count: 1,
         txtInput: '',
-        result: '',
-        randomGuess: Math.floor(Math.random() * 100),
+        result: firstGuess,
+        randomGuess: firstGuess,
         disabled: 0
     },
     methods: {

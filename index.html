@@ -67,7 +67,9 @@
             RULE: <br>
             You mentarlly select a number between 0 and 99 and the computr will try to guess it.
             The computer output is ugess, and you response with "Try Higher", "Try Lower", or "Correct".
-            Once computer guesses right number, game will be finished</p>
+            Once computer guesses right number, game will be finished <br>
+            P.S Computer will compain if you lie</p>
+        
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="readUserInput" :disabled="disabled == 1 ? true : false">Response !</button>
