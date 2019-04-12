@@ -178,15 +178,15 @@ viewModel2.data.game = new Q2()
 var question2 = new Vue(viewModel2)
 
 // Controllers for Q3, Q4
-var firstGuess = Math.floor(Math.random() * 100)
+var firstGuess = new Q3()
 var viewModel3 = {
     el: '#appendixTwoThree',
     data: {
-        game: new Q3(),
+        game: firstGuess,
         count: 1,
         txtInput: '',
-        result: firstGuess,
-        randomGuess: firstGuess,
+        result: firstGuess.generateNumberByGame(),
+        randomGuess: firstGuess.generateNumberByGame(),
         disabled: 0
     },
     methods: {
