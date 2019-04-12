@@ -43,7 +43,7 @@
     <div id="appendixTwoTwo" style="display: none">
         <p>Number has been generated for Q2 ! Guess the Number !</p>
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
-        <p style="width: 700px;">
+        <p style="width: 600px;">
             RULE: <br>
             The program shall response with "COLD" if the guess is 
             more than 40 from the target number, "COOL" if the guess 
@@ -61,10 +61,16 @@
 
     <!-- for Q3 -->
     <div id="appendixTwoThree" style="display: none">
-        <p>Number has been generated for Q3 ! Guess the Number !</p>
+        <p>Guess the Number !</p>
+        <!-- Hence it's not just a normal higher, lower response, tell users rule -->
+        <p style="width: 600px;">
+            RULE: <br>
+            You mentarlly select a number between 0 and 99 and the computr will try to guess it.
+            The computer output is ugess, and you response with "Try Higher", "Try Lower", or "Correct".
+            Once computer guesses right number, game will be finished</p>
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
-        <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Response !</button>
+        <button v-on:click="readUserInput" :disabled="disabled == 1 ? true : false">Response !</button>
         <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>

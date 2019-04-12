@@ -25,12 +25,13 @@ class Game {
         return parseInt(value)
     }
 
+    // special method for Q1 and Q2
     compareNumbers (input, randomNum){
         return null
     }
 
     // special method for Q3 and Q4
-    tellingTruth(input){
+    readUsersResponse (input, randomNum){
         return null
     }
 }
@@ -101,16 +102,21 @@ class Q3 extends Game {
         if (!correctAnswer.includes(input)){
             return 'You put wrong response, must be either "Try Higher", "Try Lower" or "Correct" '
         }
+        if (this.max <= this.min){
+            return 'you are lying !!!!! I am so sad'
+        }
+        this.count++
         console.log('Range min is : ' + this.min)
         console.log('Range max is : ' + this.max)
         if (input === 'Try Higher'){
             this.min = randomNum
-            this.count++
-            return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+            // random number between this.min ~ this.max
+            this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+            return this.generatedNum
         } else if (input === 'Try Lower'){
             this.max = randomNum
-            this.count++
-            return Math.floor(Math.random() * (this.max - this.min + 1)) + this.min;
+            this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+            return this.generatedNum
         } else if (input === 'Correct'){
             return `I got it in ${this.count} trials ! WOOHOO !!!`
         } else {
@@ -170,20 +176,21 @@ var viewModel3 = {
     el: '#appendixTwoThree',
     data: {
         game: new Q3(),
-        count: 0,
+        count: 1,
         txtInput: '',
-        result: Math.floor(Math.random() * 100),
+        result: '',
+        randomGuess: Math.floor(Math.random() * 100),
         disabled: 0
     },
     methods: {
-        compareNumbers: function () {
+        readUserInput: function () {
             if (this.disabled === 0){
-                this.result = this.game.readUsersResponse (this.txtInput, this.result)
-                this.count = this.game.getCountValue ()
+                this.result = this.game.readUsersResponse (this.txtInput, this.randomGuess)
+                this.randomGuess = this.game.generateNumberByGame ()
+                this.count = this.game.getCountValue () + 1
                 // When game is finished, Button will be disabled, need to be resetted
                 if (this.txtInput === 'Correct'){
                     this.disabled = 1
-                    this.count--
                 }
             }
             
