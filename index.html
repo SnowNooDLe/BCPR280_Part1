@@ -34,7 +34,7 @@
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
-        <button v-on:click="resetGames">Rest Game</button>
+        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
@@ -54,14 +54,20 @@
         <input type="text" id="input" v-model="txtInput"></input>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
-        <button v-on:click="resetGames">Rest Game</button>
+        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
 
     <!-- for Q3 -->
     <div id="appendixTwoThree" style="display: none">
-        <p>Coming Soon !</p>
+        <p>Number has been generated for Q3 ! Guess the Number !</p>
+        <input type="text" id="input" v-model="txtInput"/>
+        <!-- depends on value of disabled, button will be disabled -->
+        <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Response !</button>
+        <!-- <button v-on:click="resetGames">Rest Game</button> -->
+        <p>Trials: {{ count }}</p>
+        <p>{{ result }}</p>
     </div>
     <!-- for Q4 -->
     <div id="appendixTwoFour" style="display: none">
