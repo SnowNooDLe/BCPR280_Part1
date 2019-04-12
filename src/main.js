@@ -96,14 +96,19 @@ class Q2 extends Game {
 
 // Class for Q3
 class Q3 extends Game {
+    // Because computer starts guess as soon as we run the program, so override the count for Q3 & Q4 
+    constructor (){
+        super()
+        this.count = 1
+    }
     // Override
     readUsersResponse (input, randomNum) {
         let correctAnswer = ['Try Higher', 'Try Lower', 'Correct']
         if (!correctAnswer.includes(input)){
-            return 'You put wrong response, must be either "Try Higher", "Try Lower" or "Correct" '
+            return 'You put wrong response, must be either "Try Higher", "Try Lower" or "Correct"'
         }
         if (this.max <= this.min){
-            return 'you are lying !!!!! I am so sad'
+            return 'You are lying !!!!! I am so sad'
         }
         
         console.log('Range min was : ' + this.min)
@@ -183,7 +188,7 @@ var viewModel3 = {
     el: '#appendixTwoThree',
     data: {
         game: firstGuess,
-        count: 1,
+        count: firstGuess.getCountValue(),
         txtInput: '',
         result: firstGuess.generateNumberByGame(),
         randomGuess: firstGuess.generateNumberByGame(),
@@ -194,7 +199,7 @@ var viewModel3 = {
             if (this.disabled === 0){
                 this.result = this.game.readUsersResponse (this.txtInput, this.randomGuess)
                 this.randomGuess = this.game.generateNumberByGame ()
-                this.count = this.game.getCountValue () + 1
+                this.count = this.game.getCountValue()
                 // When game is finished, Button will be disabled, need to be resetted
                 if (this.txtInput === 'Correct'){
                     this.disabled = 1
