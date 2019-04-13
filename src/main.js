@@ -165,43 +165,64 @@ class Game {
     console.log('Range min was : ' + this.min)
     console.log('Range max was : ' + this.max)
     if (input === 'COLD') {
+      // just in case come back to COLD from any other step, reset the number
+      this.coolStatus = 0
+      this.warmStatus = 0
+      this.hotStatus = 0
       // based on my pseudocode
       this.min = Math.max(randomNum - 50, 0)
       this.max = Math.min(randomNum + 50, 99)
-            // random number between this.min ~ this.max
+      // random number between this.min ~ this.max
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
+      
       return this.generatedNum
     } else if (input === 'COOL') {
       if (this.coolStatus === 0){
         this.min = Math.max(randomNum - 39, 0)
         this.max = Math.min(randomNum + 39, 99)
         this.coolStatus = 1
+        // reset
+        this.warmStatus = 0
+        this.hotStatus = 0
       }
+      
       this.triedCoolNumbers.push(randomNum)
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      
       while (this.triedCoolNumbers.includes(this.generatedNum)){
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
       }
+
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
+      
       return this.generatedNum
     } else if (input === 'WARM') {
       if (this.warmStatus === 0){
         this.min = Math.max(randomNum - 19, 0)
         this.max = Math.min(randomNum + 19, 99)
         this.warmStatus = 1
+        // reset
+        this.coolStatus = 0
+        this.hotStatus = 0
       }
+
       this.triedWarmNumbers.push(randomNum)
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      
       while (this.triedWarmNumbers.includes(this.generatedNum)){
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
       }
+
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
+
       return this.generatedNum
     } else if (input === 'HOT') {
+      // no need reset for HOT as it program will either get right answer or be disappointed to user as user lied to program
       if (this.hotStatus === 0){
         this.min = Math.max(randomNum - 9, 0)
         this.max = Math.min(randomNum + 9, 99)
@@ -210,13 +231,16 @@ class Game {
 
       this.triedHotNumbers.push(randomNum)
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+
       if (this.triedHotNumbers.length == (this.max - this.min)){
         console.log("BREAKING")
         return "YOU LIED TO ME"
       }
+
       while (this.triedHotNumbers.includes(this.generatedNum)){
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
       }
+
       console.log('Program gueses is ' + randomNum)
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
@@ -317,10 +341,10 @@ class Game {
   }
   viewModel4.el = '#appendixTwoFour'
   viewModel4.data.game = firstGuess
-  // viewModel4.data.result = firstGuess.generateNumberByGame()
-  // viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
+  viewModel4.data.result = firstGuess.generateNumberByGame()
+  viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
   // Testing purpose
-  viewModel4.data.result = 2
-  viewModel4.data.randomGuess = 2
+  // viewModel4.data.result = 2
+  // viewModel4.data.randomGuess = 2
   var question4 = new Vue(viewModel4)
   
