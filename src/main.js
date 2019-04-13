@@ -143,11 +143,13 @@ class Game {
   constructor () {
     super()
     this.count = 1
-    // once reached HOT, no need to check any other number but with -9 ~ + 9 range
-    this.fixedMinForHot = 0
-    this.fixedMaxForHot = 0
     // to change fixedMin,MaxForHot once program reached HOT
+    this.coolStatus = 0
+    this.warmStatus = 0
     this.hotStatus = 0
+    // each list
+    this.triedCoolNumbers = []
+    this.triedWarmNumbers = []
     this.triedHotNumbers = []
   }
     // Override
@@ -172,38 +174,52 @@ class Game {
       console.log('Range max is : ' + this.max)
       return this.generatedNum
     } else if (input === 'COOL') {
-      this.min = Math.max(randomNum - 30, 0)
-      this.max = Math.min(randomNum + 30, 99)
+      if (this.coolStatus === 0){
+        this.min = Math.max(randomNum - 39, 0)
+        this.max = Math.min(randomNum + 39, 99)
+        this.coolStatus = 1
+      }
+      this.triedCoolNumbers.push(randomNum)
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      while (this.triedCoolNumbers.includes(this.generatedNum)){
+        this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      }
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
       return this.generatedNum
     } else if (input === 'WARM') {
-      this.min = Math.max(randomNum - 15, 0)
-      this.max = Math.min(randomNum + 15, 99)
+      if (this.warmStatus === 0){
+        this.min = Math.max(randomNum - 19, 0)
+        this.max = Math.min(randomNum + 19, 99)
+        this.warmStatus = 1
+      }
+      this.triedWarmNumbers.push(randomNum)
       this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      while (this.triedWarmNumbers.includes(this.generatedNum)){
+        this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      }
       console.log('Range min is : ' + this.min)
       console.log('Range max is : ' + this.max)
       return this.generatedNum
     } else if (input === 'HOT') {
-      if (this.hotStatus == 0){
-        this.fixedMinForHot = Math.max(randomNum - 9, 0)
-        this.fixedMaxForHot = Math.min(randomNum + 9, 99)
+      if (this.hotStatus === 0){
+        this.min = Math.max(randomNum - 9, 0)
+        this.max = Math.min(randomNum + 9, 99)
         this.hotStatus = 1
       }
 
       this.triedHotNumbers.push(randomNum)
-      this.generatedNum = Math.floor(Math.random() * (this.fixedMaxForHot - this.fixedMinForHot + 1)) + this.fixedMinForHot
-      if (this.triedHotNumbers.length == (this.fixedMaxForHot - this.fixedMinForHot)){
+      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      if (this.triedHotNumbers.length == (this.max - this.min)){
         console.log("BREAKING")
         return "YOU LIED TO ME"
       }
       while (this.triedHotNumbers.includes(this.generatedNum)){
-        this.generatedNum = Math.floor(Math.random() * (this.fixedMaxForHot - this.fixedMinForHot + 1)) + this.fixedMinForHot
+        this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
       }
       console.log('Program gueses is ' + randomNum)
-      console.log('Range min is : ' + this.fixedMinForHot)
-      console.log('Range max is : ' + this.fixedMaxForHot)
+      console.log('Range min is : ' + this.min)
+      console.log('Range max is : ' + this.max)
       console.log('List : ' + this.triedHotNumbers)
 
       return this.generatedNum
