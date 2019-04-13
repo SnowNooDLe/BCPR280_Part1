@@ -63,7 +63,7 @@
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
         <p style="width: 600px;">
             RULE: <br>
-            You mentarlly select a number between 0 and 99 and the computr will try to guess it.
+            You mentally select a number between 0 and 99 and the computr will try to guess it.
             The computer output is ugess, and you response with "Try Higher", "Try Lower", or "Correct".
             Once computer guesses right number, game will be finished <br>
             P.S Computer will compain if you lie</p>
@@ -77,7 +77,24 @@
     </div>
     <!-- for Q4 -->
     <div id="appendixTwoFour" style="display: none">
-        <p>Coming Soon !</p>
+        <p>Guess the Number !</p>
+        <!-- Hence it's not just a normal higher, lower response, tell users rule -->
+        <p style="width: 600px;">
+            RULE: <br>
+            You mentally selects a number between 0 and 99 and the computer tries to guess it.
+            The computer outputs its guess, and you response with "COLD" if the guess is 
+            more than 40 from the target number, "COOL" if the guess 
+            is within 20-39 of the target number, “WARM” if the guess 
+            is within 10-19 of the target number, “HOT” if the guess 
+            is within 1-9 of the target number or 
+            "I got it in n trials" if the guess is correct</p>
+        
+        <input type="text" id="input" v-model="txtInput"/>
+        <!-- depends on value of disabled, button will be disabled -->
+        <button v-on:click="readUserInput" :disabled="disabled == 1 ? true : false">Response !</button>
+        <!-- <button v-on:click="resetGames">Rest Game</button> -->
+        <p>Trials: {{ count }}</p>
+        <p>{{ result }}</p>
     </div>
     <script src="src/main.js"></script>
     <script>

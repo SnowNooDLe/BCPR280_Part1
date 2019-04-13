@@ -35,7 +35,7 @@ class Game {
     }
   }
   
-  // Class for Q1
+  // Class for Iteration 1
   class Q1 extends Game {
       // Override
     compareNumbers (input, randomNum) {
@@ -61,7 +61,7 @@ class Game {
     }
   }
   
-  // Class for Q2
+  // Class for Iteration 2
   class Q2 extends Game {
       // Override
     compareNumbers (input, randomNum) {
@@ -92,7 +92,7 @@ class Game {
     }
   }
   
-  // Class for Q3
+  // Class for Iteration 3
   class Q3 extends Game {
       // Because computer starts guess as soon as we run the program, so override the count for Q3 & Q4
     constructor () {
@@ -108,11 +108,10 @@ class Game {
       if (this.max <= this.min) {
         return 'You are lying !!!!! I am so sad'
       }
-  
+      this.count++
       console.log('Range min was : ' + this.min)
       console.log('Range max was : ' + this.max)
       if (input === 'Try Higher') {
-        this.count++
         this.min = randomNum
               // random number between this.min ~ this.max
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
@@ -120,19 +119,77 @@ class Game {
         console.log('Range max is : ' + this.max)
         return this.generatedNum
       } else if (input === 'Try Lower') {
-        this.count++
         this.max = randomNum
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
         console.log('Range min is : ' + this.min)
         console.log('Range max is : ' + this.max)
         return this.generatedNum
       } else if (input === 'Correct') {
+        this.count--
         return `I got it in ${this.count} trials ! WOOHOO !!!`
       } else {
         return 'Something is not right ! '
       }
     }
   }
+
+  // Class for Iteration 4
+  class Q4 extends Game {
+    // Because computer starts guess as soon as we run the program, so override the count for Q3 & Q4
+  constructor () {
+    super()
+    this.count = 1
+  }
+    // Override
+  readUsersResponse (input, randomNum) {
+    let correctAnswer = ['COLD', 'COOL', 'WARM', 'HOT', 'Correct']
+    if (!correctAnswer.includes(input)) {
+      return 'You put wrong response, must be either "COLD", "COOL", "WARM", "HOT" or "Correct"'
+    }
+    if (this.max <= this.min) {
+      return 'You are lying !!!!! I am so sad'
+    }
+    this.count++
+    console.log('Range min was : ' + this.min)
+    console.log('Range max was : ' + this.max)
+    if (input === 'COLD') {
+      // based on my pseudocode
+      this.min = Math.max(randomNum - 50, 0)
+      this.max = Math.min(randomNum + 50, 99)
+            // random number between this.min ~ this.max
+      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      console.log('Range min is : ' + this.min)
+      console.log('Range max is : ' + this.max)
+      return this.generatedNum
+    } else if (input === 'COOL') {
+      this.min = Math.max(randomNum - 30, 0)
+      this.max = Math.min(randomNum + 30, 99)
+      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      console.log('Range min is : ' + this.min)
+      console.log('Range max is : ' + this.max)
+      return this.generatedNum
+    } else if (input === 'WARM') {
+      this.min = Math.max(randomNum - 15, 0)
+      this.max = Math.min(randomNum + 15, 99)
+      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      console.log('Range min is : ' + this.min)
+      console.log('Range max is : ' + this.max)
+      return this.generatedNum
+    } else if (input === 'HOT') {
+      this.min = Math.max(randomNum - 5, 0)
+      this.max = Math.min(randomNum + 5, 99)
+      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+      console.log('Range min is : ' + this.min)
+      console.log('Range max is : ' + this.max)
+      return this.generatedNum
+    } else if (input === 'Correct') {
+      count--
+      return `I got it in ${this.count} trials ! WOOHOO !!!`
+    } else {
+      return 'Something is not right ! '
+    }
+  }
+}
   
   // Controllers
   var viewModel = {
@@ -196,6 +253,7 @@ class Game {
     methods: {
       readUserInput: function () {
         if (this.disabled === 0) {
+          console.log(this.randomGuess)
           this.result = this.game.readUsersResponse(this.txtInput, this.randomGuess)
           this.randomGuess = this.game.generateNumberByGame()
           this.count = this.game.getCountValue()
@@ -209,4 +267,16 @@ class Game {
   }
   
   var question3 = new Vue(viewModel3)
+
+  // Controller for Q4
+  var firstGuess = new Q4()
+  viewModel4 = JSON.parse(JSON.stringify(viewModel3))
+  viewModel4.methods = {
+    ...viewModel3.methods
+  }
+  viewModel4.el = '#appendixTwoFour'
+  viewModel4.data.game = firstGuess
+  viewModel4.data.result = firstGuess.generateNumberByGame()
+  viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
+  var question4 = new Vue(viewModel4)
   
