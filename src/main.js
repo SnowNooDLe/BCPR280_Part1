@@ -33,6 +33,10 @@ class Game {
     readUsersResponse (input, randomNum) {
       return null
     }
+
+    generateRandom(min, max) {
+      return null
+    }
   }
   
   // Class for Iteration 1
@@ -139,6 +143,12 @@ class Game {
   constructor () {
     super()
     this.count = 1
+    // once reached HOT, no need to check any other number but with -9 ~ + 9 range
+    this.fixedMinForHot = 0
+    this.fixedMaxForHot = 0
+    // to change fixedMin,MaxForHot once program reached HOT
+    this.hotStatus = 0
+    this.triedHotNumbers = []
   }
     // Override
   readUsersResponse (input, randomNum) {
@@ -176,14 +186,29 @@ class Game {
       console.log('Range max is : ' + this.max)
       return this.generatedNum
     } else if (input === 'HOT') {
-      this.min = Math.max(randomNum - 5, 0)
-      this.max = Math.min(randomNum + 5, 99)
-      this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
-      console.log('Range min is : ' + this.min)
-      console.log('Range max is : ' + this.max)
+      if (this.hotStatus == 0){
+        this.fixedMinForHot = Math.max(randomNum - 9, 0)
+        this.fixedMaxForHot = Math.min(randomNum + 9, 99)
+        this.hotStatus = 1
+      }
+
+      this.triedHotNumbers.push(randomNum)
+      this.generatedNum = Math.floor(Math.random() * (this.fixedMaxForHot - this.fixedMinForHot + 1)) + this.fixedMinForHot
+      if (this.triedHotNumbers.length == (this.fixedMaxForHot - this.fixedMinForHot)){
+        console.log("BREAKING")
+        return "YOU LIED TO ME"
+      }
+      while (this.triedHotNumbers.includes(this.generatedNum)){
+        this.generatedNum = Math.floor(Math.random() * (this.fixedMaxForHot - this.fixedMinForHot + 1)) + this.fixedMinForHot
+      }
+      console.log('Program gueses is ' + randomNum)
+      console.log('Range min is : ' + this.fixedMinForHot)
+      console.log('Range max is : ' + this.fixedMaxForHot)
+      console.log('List : ' + this.triedHotNumbers)
+
       return this.generatedNum
     } else if (input === 'Correct') {
-      count--
+      this.count--
       return `I got it in ${this.count} trials ! WOOHOO !!!`
     } else {
       return 'Something is not right ! '
@@ -258,7 +283,7 @@ class Game {
           this.randomGuess = this.game.generateNumberByGame()
           this.count = this.game.getCountValue()
                   // When game is finished, Button will be disabled, need to be resetted
-          if (this.txtInput === 'Correct') {
+          if (this.txtInput === 'Correct' || this.result === 'YOU LIED TO ME') {
             this.disabled = 1
           }
         }
@@ -276,7 +301,10 @@ class Game {
   }
   viewModel4.el = '#appendixTwoFour'
   viewModel4.data.game = firstGuess
-  viewModel4.data.result = firstGuess.generateNumberByGame()
-  viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
+  // viewModel4.data.result = firstGuess.generateNumberByGame()
+  // viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
+  // Testing purpose
+  viewModel4.data.result = 2
+  viewModel4.data.randomGuess = 2
   var question4 = new Vue(viewModel4)
   
