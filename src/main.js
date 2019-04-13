@@ -33,10 +33,6 @@ class Game {
     readUsersResponse (input, randomNum) {
       return null
     }
-
-    generateRandom(min, max) {
-      return null
-    }
   }
   
   // Class for Iteration 1
@@ -106,27 +102,25 @@ class Game {
       // Override
     readUsersResponse (input, randomNum) {
       let correctAnswer = ['Try Higher', 'Try Lower', 'Correct']
+      
       if (!correctAnswer.includes(input)) {
         return 'You put wrong response, must be either "Try Higher", "Try Lower" or "Correct"'
       }
+
       if (this.max <= this.min) {
         return 'You are lying !!!!! I am so sad'
       }
+
       this.count++
-      console.log('Range min was : ' + this.min)
-      console.log('Range max was : ' + this.max)
+
       if (input === 'Try Higher') {
         this.min = randomNum
-              // random number between this.min ~ this.max
+        // random number between this.min ~ this.max
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
-        console.log('Range min is : ' + this.min)
-        console.log('Range max is : ' + this.max)
         return this.generatedNum
       } else if (input === 'Try Lower') {
         this.max = randomNum
         this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
-        console.log('Range min is : ' + this.min)
-        console.log('Range max is : ' + this.max)
         return this.generatedNum
       } else if (input === 'Correct') {
         this.count--
