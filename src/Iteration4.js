@@ -11,6 +11,7 @@ this.hotStatus = 0
 // each list
 this.triedNumbers = []
 this.triedHotNumbers = []
+// this.triedHotNumbers = [0,2,4,5,6,7,8,9,10]
 }
 
 whenResponseIsCold (randomNum){
@@ -23,9 +24,6 @@ whenResponseIsCold (randomNum){
     this.max = Math.min(randomNum + 50, 99)
     // random number between this.min ~ this.max
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
-    
-    console.log('Range min is : ' + this.min)
-    console.log('Range max is : ' + this.max)
     
     return this.generatedNum
 }
@@ -46,9 +44,6 @@ whenResponseIsCool (randomNum){
     while (this.triedNumbers.includes(this.generatedNum)){
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
     }
-
-    console.log('Range min is : ' + this.min)
-    console.log('Range max is : ' + this.max)
     
     return this.generatedNum
 }
@@ -71,9 +66,6 @@ whenResponseIsWarm (randomNum) {
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
     }
 
-    console.log('Range min is : ' + this.min)
-    console.log('Range max is : ' + this.max)
-
     return this.generatedNum
 }
 
@@ -81,31 +73,23 @@ whenResponseIsHot(randomNum){
     // no need reset for HOT as it program will either get right answer or be disappointed to user as user lied to program
     if (this.hotStatus === 0){
         // Hence number range is 0 ~ 99
+        // console.log("Status is : " + this.hotStatus)
         this.min = Math.max(randomNum - 9, 0)
         this.max = Math.min(randomNum + 9, 99)
         this.hotStatus = 1
     }
-
     this.triedHotNumbers.push(randomNum)
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
 
-    if (this.triedHotNumbers.length == (this.max - this.min)){
-    // Program tested every possibilities but didnt get 'Correct' response which user lied to program
-    console.log("BREAKING")
-    return "YOU LIED TO ME"
+    if (this.triedHotNumbers.length == (this.max - this.min) + 1){
+        // Program tested every possibilities but didnt get 'Correct' response which user lied to program
+        return "YOU LIED TO ME"
     }
-
     // Check whether randomly generated number is in the list
     // if not there, return it as it's a new guess else keep generating until get new one
     while (this.triedHotNumbers.includes(this.generatedNum)){
-    this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
+        this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
     }
-
-    console.log('Program gueses is ' + randomNum)
-    console.log('Range min is : ' + this.min)
-    console.log('Range max is : ' + this.max)
-    console.log('List : ' + this.triedHotNumbers)
-
     return this.generatedNum
 }
 
@@ -118,8 +102,6 @@ if (!correctAnswer.includes(input)) {
 }
 // as soon as program gets into this step, count of the number of guesses
 this.count++
-console.log('Range min was : ' + this.min)
-console.log('Range max was : ' + this.max)
 
 if (input === 'COLD') {
     return this.whenResponseIsCold(randomNum)

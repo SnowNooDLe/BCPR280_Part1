@@ -85,7 +85,4 @@ viewModel4.el = '#appendixTwoFour'
 viewModel4.data.game = firstGuess
 viewModel4.data.result = firstGuess.generateNumberByGame()
 viewModel4.data.randomGuess = firstGuess.generateNumberByGame()
-// Testing purpose
-// viewModel4.data.result = 2
-// viewModel4.data.randomGuess = 2
 var question4 = new Vue(viewModel4)
