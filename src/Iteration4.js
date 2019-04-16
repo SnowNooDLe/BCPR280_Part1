@@ -12,20 +12,8 @@ this.hotStatus = 0
 this.triedNumbers = []
 this.triedHotNumbers = []
 }
-// Override
-readUsersResponse (input, randomNum) {
-// checking user input is one of items in correctAnswer
-// otherwise tell user to put the right input value
-let correctAnswer = ['COLD', 'COOL', 'WARM', 'HOT', 'Correct']
-if (!correctAnswer.includes(input)) {
-    return 'You put wrong response, must be either "COLD", "COOL", "WARM", "HOT" or "Correct"'
-}
-// as soon as program gets into this step, count of the number of guesses
-this.count++
-console.log('Range min was : ' + this.min)
-console.log('Range max was : ' + this.max)
 
-if (input === 'COLD') {
+whenResponseIsCold (randomNum){
     // just in case come back to COLD from any other step, reset the number
     this.coolStatus = 0
     this.warmStatus = 0
@@ -40,17 +28,18 @@ if (input === 'COLD') {
     console.log('Range max is : ' + this.max)
     
     return this.generatedNum
-} else if (input === 'COOL') {
+}
+
+whenResponseIsCool (randomNum){
     if (this.coolStatus === 0){
-    // Hence number range is 0 ~ 99
-    this.min = Math.max(randomNum - 39, 0)
-    this.max = Math.min(randomNum + 39, 99)
-    this.coolStatus = 1
-    // reset
-    this.warmStatus = 0
-    this.hotStatus = 0
+        // Hence number range is 0 ~ 99
+        this.min = Math.max(randomNum - 39, 0)
+        this.max = Math.min(randomNum + 39, 99)
+        this.coolStatus = 1
+        // reset
+        this.warmStatus = 0
+        this.hotStatus = 0
     }
-    
     this.triedNumbers.push(randomNum)
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
     
@@ -62,17 +51,19 @@ if (input === 'COLD') {
     console.log('Range max is : ' + this.max)
     
     return this.generatedNum
-} else if (input === 'WARM') {
+}
+
+whenResponseIsWarm (randomNum) {
     if (this.warmStatus === 0){
-    // Hence number range is 0 ~ 99
-    this.min = Math.max(randomNum - 19, 0)
-    this.max = Math.min(randomNum + 19, 99)
-    this.warmStatus = 1
-    // reset
-    this.coolStatus = 0
-    this.hotStatus = 0
+        // Hence number range is 0 ~ 99
+        this.min = Math.max(randomNum - 19, 0)
+        this.max = Math.min(randomNum + 19, 99)
+        this.warmStatus = 1
+        // reset
+        this.coolStatus = 0
+        this.hotStatus = 0
     }
-
+    
     this.triedNumbers.push(randomNum)
     this.generatedNum = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
     
@@ -84,13 +75,15 @@ if (input === 'COLD') {
     console.log('Range max is : ' + this.max)
 
     return this.generatedNum
-} else if (input === 'HOT') {
+}
+
+whenResponseIsHot(randomNum){
     // no need reset for HOT as it program will either get right answer or be disappointed to user as user lied to program
     if (this.hotStatus === 0){
-    // Hence number range is 0 ~ 99
-    this.min = Math.max(randomNum - 9, 0)
-    this.max = Math.min(randomNum + 9, 99)
-    this.hotStatus = 1
+        // Hence number range is 0 ~ 99
+        this.min = Math.max(randomNum - 9, 0)
+        this.max = Math.min(randomNum + 9, 99)
+        this.hotStatus = 1
     }
 
     this.triedHotNumbers.push(randomNum)
@@ -114,6 +107,28 @@ if (input === 'COLD') {
     console.log('List : ' + this.triedHotNumbers)
 
     return this.generatedNum
+}
+
+readUsersResponse (input, randomNum) {
+// checking user input is one of items in correctAnswer
+// otherwise tell user to put the right input value
+let correctAnswer = ['COLD', 'COOL', 'WARM', 'HOT', 'Correct']
+if (!correctAnswer.includes(input)) {
+    return 'You put wrong response, must be either "COLD", "COOL", "WARM", "HOT" or "Correct"'
+}
+// as soon as program gets into this step, count of the number of guesses
+this.count++
+console.log('Range min was : ' + this.min)
+console.log('Range max was : ' + this.max)
+
+if (input === 'COLD') {
+    return this.whenResponseIsCold(randomNum)
+} else if (input === 'COOL') {
+    return this.whenResponseIsCool(randomNum)
+} else if (input === 'WARM') {
+    return this.whenResponseIsWarm(randomNum)
+} else if (input === 'HOT') {
+    return this.whenResponseIsHot(randomNum)
 } else if (input === 'Correct') {
     // When input is Correct, program no need to try more but our program will still count + 1
     // so - 1 manually

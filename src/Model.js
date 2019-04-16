@@ -23,14 +23,4 @@ class Game {
     convertToInteger (value) {
       return parseInt(value)
     }
-  
-      // special method for Q1 and Q2
-    compareNumbers (input, randomNum) {
-      return null
-    }
-  
-      // special method for Q3 and Q4
-    readUsersResponse (input, randomNum) {
-      return null
-    }
   }
