@@ -8,36 +8,28 @@
     
 </head>
 <body>
-    <!-- <div id='global-div'> -->
     <h1>Assignment 1, Appendix Two</h1>
     <button type="button" class="btn btn-primary btn-lg" 
-    onclick="resetElement(); document.getElementById('appendixTwoOne').style.display = 'block'">Q1</button>
+    onclick="resetElement(); document.getElementById('appendixTwoOne').style.display = 'block'">Iteration 1</button>
     <button type="button" class="btn btn-secondary btn-lg"
-    onclick="resetElement(); document.getElementById('appendixTwoTwo').style.display = 'block'">Q2</button>
+    onclick="resetElement(); document.getElementById('appendixTwoTwo').style.display = 'block'">Iteration 2</button>
     <button type="button" class="btn btn-success btn-lg" 
-    onclick="resetElement(); document.getElementById('appendixTwoThree').style.display = 'block'">Q3</button>
+    onclick="resetElement(); document.getElementById('appendixTwoThree').style.display = 'block'">Iteration 3</button>
     <button type="button" class="btn btn-danger btn-lg" 
-    onclick="resetElement(); document.getElementById('appendixTwoFour').style.display = 'block'">Q4</button>
-    <!-- <button class="btn btn-primary btn-lg" v-on:click="seen = !seen">Q1</button>
-    <button class="btn btn-secondary btn-lg">Q2</button>
-    <button class="btn btn-success btn-lg">Q3</button>
-    <button class="btn btn-danger btn-lg">Q4</button> -->
-    
-    
+    onclick="resetElement(); document.getElementById('appendixTwoFour').style.display = 'block'">Iteration 4</button>
     
     <!-- VIEW -->
-    <!-- for Q1 -->
+    <!-- for Iteration 1 -->
     <div id="appendixTwoOne" style="display: none">
         <p>Number has been generated for Q1 ! Guess the Number !</p>
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
-        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
 
-    <!-- for Q2 -->
+    <!-- for Iteration 2 -->
     <div id="appendixTwoTwo" style="display: none">
         <p>Number has been generated for Q2 ! Guess the Number !</p>
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
@@ -52,12 +44,11 @@
         <input type="text" id="input" v-model="txtInput"></input>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="compareNumbers" :disabled="disabled == 1 ? true : false">Guess !</button>
-        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
 
-    <!-- for Q3 -->
+    <!-- for Iteration 3 -->
     <div id="appendixTwoThree" style="display: none">
         <p>Guess the Number !</p>
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
@@ -71,11 +62,10 @@
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="readUserInput" :disabled="disabled == 1 ? true : false">Response !</button>
-        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
-    <!-- for Q4 -->
+    <!-- for Iteration 4 -->
     <div id="appendixTwoFour" style="display: none">
         <p>Guess the Number !</p>
         <!-- Hence it's not just a normal higher, lower response, tell users rule -->
@@ -92,15 +82,19 @@
         <input type="text" id="input" v-model="txtInput"/>
         <!-- depends on value of disabled, button will be disabled -->
         <button v-on:click="readUserInput" :disabled="disabled == 1 ? true : false">Response !</button>
-        <!-- <button v-on:click="resetGames">Rest Game</button> -->
         <p>Trials: {{ count }}</p>
         <p>{{ result }}</p>
     </div>
-    <script src="src/Model.js"></script>
+    <!-- use those to test Iteration 5 -->
+    <!-- <script src="src/Model.js"></script>
     <script src="src/Iteration1.js"></script>
     <script src="src/Iteration2.js"></script>
     <script src="src/Iteration3.js"></script>
-    <script src="src/Iteration4.js"></script>
+    <script src="src/Iteration4.js"></script> -->
+    <!-- use this to test first four iterations. -->
+    <script src="src/Main.js"></script>
+
+    <!-- Controller needs all the time -->
     <script src="src/Controller.js"></script>
     <script>
     function resetElement() {
